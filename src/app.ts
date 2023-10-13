@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import router from "./routers";
+import handleError from "./middlewares/handleError";
 
 const app = express();
 
@@ -16,6 +17,6 @@ app.get("/", (req, res) => {
 });
 
 app.use(router);
-
+app.use(handleError);
 
 export default app;
