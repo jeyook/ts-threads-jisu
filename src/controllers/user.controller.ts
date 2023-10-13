@@ -1,16 +1,13 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 import { userService } from "../services";
+import createControllerMethod from "./utils/createControllerMethod";
 
-async function createUser(req: Request, res: Response, next: NextFunction) {
-  try {
+const createUser = createControllerMethod(
+  async (req: Request, res: Response) => {
     await userService.createUser(req.body);
-  
-    res.status(201).json({message: "success"});
-
-  } catch (error) {
-    next(error);
+    res.status(201).json({ message: "success" });
   }
-}
+);
 
 export default { createUser };
