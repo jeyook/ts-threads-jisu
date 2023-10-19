@@ -5,8 +5,8 @@ import createControllerMethod from "./utils/createControllerMethod";
 
 const createUser = createControllerMethod(
   async (req: Request, res: Response) => {
-    await userService.createUser(req.body);
-    res.status(201).json({ message: "success" });
+    const user = await userService.createUser(req.body);
+    res.status(201).json({ message: "success", data: user });
   }
 );
 
